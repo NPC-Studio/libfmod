@@ -6,8 +6,8 @@ use quote::quote;
 
 use crate::models::Type::FundamentalType;
 use crate::models::{
-    Api, Argument, Callback, Constant, Enumeration, Error, ErrorStringMapping, Field, Flags,
-    Function, OpaqueType, Pointer, Preset, Structure, Type, TypeAlias, Union,
+    Api, Argument, Callback, Constant, Enumeration, Error, Field, Flags, Function, OpaqueType,
+    Pointer, Preset, Structure, Type, TypeAlias, Union,
 };
 
 impl From<ParseIntError> for Error {
@@ -335,7 +335,6 @@ pub fn generate_preset(structure: &Structure, preset: &Preset) -> Result<TokenSt
         };
     })
 }
-
 
 pub fn generate_ffi_code(api: &Api) -> Result<TokenStream, Error> {
     let opaque_types: Vec<TokenStream> =

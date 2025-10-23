@@ -16,8 +16,8 @@ use crate::parsers::{
     fmod_studio, fmod_studio_common,
 };
 use std::path::Path;
-use std::{env, fs};
 use std::process::Command;
+use std::{env, fs};
 
 mod generators;
 mod models;
@@ -191,7 +191,7 @@ fn generate_lib_fmod(source: &str, destination: &str) -> Result<(), Error> {
     Ok(())
 }
 
-const FMOD_SDK_PATH: &str = "./fmod/20222";
+const FMOD_SDK_PATH: &str = "./fmod/20309";
 const OUTPUT_DIR: &str = "../libfmod";
 
 fn main() {
@@ -205,7 +205,7 @@ fn main() {
         Some(destination) => destination,
     };
     println!("source {} {}", source, destination);
-    if let Err(error) = generate_lib_fmod(&source, &destination) {
+    if let Err(error) = generate_lib_fmod(source, destination) {
         println!("Unable to generate libfmod, {:?}", error);
     }
 }

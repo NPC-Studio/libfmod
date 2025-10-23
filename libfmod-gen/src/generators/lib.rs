@@ -12,18 +12,6 @@ use crate::models::{
     Api, Argument, Enumeration, Error, Field, Function, Modifier, Pointer, Structure, Type,
 };
 
-#[derive(Debug, Clone, PartialEq)]
-pub struct Struct {
-    pub structure: Structure,
-    pub constructor: Function,
-    pub methods: Vec<Function>,
-}
-
-#[derive(Debug, Default)]
-pub struct Lib {
-    pub structs: Vec<Struct>,
-}
-
 fn extract_struct_key(name: &str) -> String {
     match name.rfind('_') {
         Some(index) => name[..index].to_uppercase(),
@@ -866,13 +854,13 @@ impl Api {
     pub fn is_structure(&self, key: &str) -> bool {
         self.structures
             .iter()
-            .any(|structure| &structure.name == key)
+            .any(|structure| structure.name == key)
     }
 
     pub fn is_opaque_type(&self, key: &str) -> bool {
         self.opaque_types
             .iter()
-            .any(|opaque_type| &opaque_type.name == key)
+            .any(|opaque_type| opaque_type.name == key)
     }
 
     pub fn is_enumeration(&self, key: &str) -> bool {
